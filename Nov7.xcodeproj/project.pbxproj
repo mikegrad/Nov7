@@ -19,6 +19,9 @@
 		2711A115182BF59600961BFF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2711A0FD182BF59600961BFF /* UIKit.framework */; };
 		2711A11D182BF59600961BFF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2711A11B182BF59600961BFF /* InfoPlist.strings */; };
 		2711A11F182BF59600961BFF /* Nov7Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2711A11E182BF59600961BFF /* Nov7Tests.m */; };
+		2711A12A182BF5A700961BFF /* View1.m in Sources */ = {isa = PBXBuildFile; fileRef = 2711A129182BF5A700961BFF /* View1.m */; };
+		2711A12C182BF5BC00961BFF /* musette.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2711A12B182BF5BC00961BFF /* musette.mp3 */; };
+		2711A12E182C025C00961BFF /* sneeze.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 2711A12D182C025C00961BFF /* sneeze.m4v */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,10 @@
 		2711A11A182BF59600961BFF /* Nov7Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Nov7Tests-Info.plist"; sourceTree = "<group>"; };
 		2711A11C182BF59600961BFF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2711A11E182BF59600961BFF /* Nov7Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Nov7Tests.m; sourceTree = "<group>"; };
+		2711A128182BF5A700961BFF /* View1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View1.h; sourceTree = "<group>"; };
+		2711A129182BF5A700961BFF /* View1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View1.m; sourceTree = "<group>"; };
+		2711A12B182BF5BC00961BFF /* musette.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = musette.mp3; path = ../musette.mp3; sourceTree = "<group>"; };
+		2711A12D182C025C00961BFF /* sneeze.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = sneeze.m4v; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +84,8 @@
 		2711A0ED182BF59600961BFF = {
 			isa = PBXGroup;
 			children = (
+				2711A128182BF5A700961BFF /* View1.h */,
+				2711A129182BF5A700961BFF /* View1.m */,
 				2711A0FF182BF59600961BFF /* Nov7 */,
 				2711A118182BF59600961BFF /* Nov7Tests */,
 				2711A0F8182BF59600961BFF /* Frameworks */,
@@ -107,8 +116,10 @@
 		2711A0FF182BF59600961BFF /* Nov7 */ = {
 			isa = PBXGroup;
 			children = (
+				2711A12B182BF5BC00961BFF /* musette.mp3 */,
 				2711A108182BF59600961BFF /* Nov7AppDelegate.h */,
 				2711A109182BF59600961BFF /* Nov7AppDelegate.m */,
+				2711A12D182C025C00961BFF /* sneeze.m4v */,
 				2711A10B182BF59600961BFF /* Images.xcassets */,
 				2711A100182BF59600961BFF /* Supporting Files */,
 			);
@@ -221,7 +232,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2711A104182BF59600961BFF /* InfoPlist.strings in Resources */,
+				2711A12E182C025C00961BFF /* sneeze.m4v in Resources */,
 				2711A10C182BF59600961BFF /* Images.xcassets in Resources */,
+				2711A12C182BF5BC00961BFF /* musette.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2711A12A182BF5A700961BFF /* View1.m in Sources */,
 				2711A10A182BF59600961BFF /* Nov7AppDelegate.m in Sources */,
 				2711A106182BF59600961BFF /* main.m in Sources */,
 			);

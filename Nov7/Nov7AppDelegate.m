@@ -10,13 +10,147 @@
 
 @implementation Nov7AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+
+
+- (BOOL) application: (UIApplication *) application didFinishLaunchingWithOptions: (NSDictionary *) launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	// Override point for customization after application launch.
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    return YES;
+	NSBundle *bundle = [NSBundle mainBundle];
+	NSLog(@"bundle.bundlePath == \"%@\"", bundle.bundlePath);
+    
+	NSString *filename = [bundle pathForResource: @"musette" ofType: @"mp3"];
+	NSLog(@"filename == \"%@\"", filename);
+    
+	url = [NSURL fileURLWithPath: filename isDirectory: NO];
+	NSLog(@"url == \"%@\"", url);
+    
+    player.volume = 1.0;		//the default full
+	player.numberOfLoops = -1;	//negative for infinite loop
+    
+    
+    //video file
+    NSString *videoFileName = [bundle pathForResource: @"sneeze" ofType: @"m4v"];
+	NSLog(@"video filename == \"%@\"", videoFileName);
+    videoURL = [NSURL fileURLWithPath: videoFileName isDirectory: NO];
+	NSLog(@"url == \"%@\"", videoURL);
+    
+    videoPlayer = [[MPMoviePlayerController alloc] init];
+	if (videoPlayer == nil) {
+		NSLog(@"could not create MPMoviePlayerController");
+		return YES;
+	}
+    
+    videoPlayer.shouldAutoplay = NO; //don't start spontaneously
+	videoPlayer.scalingMode = MPMovieScalingModeAspectFill;
+	videoPlayer.controlStyle = MPMovieControlStyleDefault ;
+	videoPlayer.movieSourceType = MPMovieSourceTypeFile; //vs. stream
+	[videoPlayer setContentURL: url];
+    
+
+    //NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+	
+	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+     [center addObserver: self selector: @selector(playbackDidFinish:) name: MPMoviePlayerPlaybackDidFinishNotification object: videoPlayer
+     ];
+
+    
+	UIScreen *screen = [UIScreen mainScreen];
+	view = [[View1 alloc] initWithFrame: screen.applicationFrame];
+	self.window = [[UIWindow alloc] initWithFrame: screen.bounds];
+	self.window.backgroundColor = [UIColor whiteColor];
+	[self.window addSubview: view];
+	[self.window makeKeyAndVisible];
+
+	return YES;
+}
+
+- (void) valueChanged: (id) sender {
+    
+    if ( [sender isKindOfClass:[UISegmentedControl class]]) {
+        
+        UISegmentedControl *control = sender;
+        
+        switch (control.selectedSegmentIndex) {
+                
+            case 0:	//Play Video
+                
+                //if player is playing, stop it.
+                if (player.playing) {
+                    [player stop];
+                }
+                
+                //now start the vide0
+                videoPlayer.view.frame = view.frame;
+                [view removeFromSuperview];
+                [self.window addSubview: videoPlayer.view];
+                [videoPlayer play];
+        
+                
+                break;
+                
+            case 1:	//Play Audio
+                
+                if (player == nil) {
+                    //Create the audio player.
+                    
+                    NSError *error = nil;
+                    player = [[AVAudioPlayer alloc] initWithContentsOfURL: url error: &error];
+                    if (player == nil) {
+                        NSLog(@"AVAudioPayer initWithContentsOfURL:error: %@", error);
+                        break;
+                    }
+                    
+
+                    
+                    player.delegate = self;
+                    player.volume = 1.0;		//the default
+                    player.numberOfLoops = 0;	//negative for infinite loop
+                }
+                
+                
+                if (player.playing) {
+                    [player stop];
+                    break;
+                }
+                
+                if (![player prepareToPlay]) {
+                    NSLog(@"AVAudioPlayer prepareToPlay failed.");
+                    break;
+                }
+                
+                if (![player play]) {
+                    NSLog(@"AVAudioPlayer play failed.");
+                    break;
+                }
+                
+                
+                
+                break;
+                
+            case 2:	//Noting
+                
+                
+            default:
+                NSLog(@"UISegmentedControl selectedSegmentIndex == %ld",
+                      (long)control.selectedSegmentIndex);
+                break;
+        }
+
+        
+    } else if ( [sender isKindOfClass:[UISlider class]]) {
+        UISlider *s = sender;
+        player.volume = s.value / 100;
+    }
+	
+}
+
+- (void) playbackDidFinish: (NSNotification *) notification {
+	//notification.object is the movie player controller.
+	[videoPlayer.view removeFromSuperview];
+	[UIApplication sharedApplication].statusBarHidden = NO;
+	[self.window addSubview: view];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
