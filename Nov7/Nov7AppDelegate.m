@@ -35,7 +35,7 @@
     videoURL = [NSURL fileURLWithPath: videoFileName isDirectory: NO];
 	NSLog(@"url == \"%@\"", videoURL);
     
-    videoPlayer = [[MPMoviePlayerController alloc] init];
+    videoPlayer = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
 	if (videoPlayer == nil) {
 		NSLog(@"could not create MPMoviePlayerController");
 		return YES;
@@ -45,7 +45,7 @@
 	videoPlayer.scalingMode = MPMovieScalingModeAspectFill;
 	videoPlayer.controlStyle = MPMovieControlStyleDefault ;
 	videoPlayer.movieSourceType = MPMovieSourceTypeFile; //vs. stream
-	[videoPlayer setContentURL: url];
+	[videoPlayer setContentURL: videoURL];
     
 
     //NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
@@ -81,9 +81,12 @@
                     [player stop];
                 }
                 
+                CGRect b = self.window.bounds;
+                
                 //now start the vide0
-                videoPlayer.view.frame = view.frame;
-                [view removeFromSuperview];
+                videoPlayer.view.frame =
+                    CGRectMake(b.origin.x + b.size.width/8, b.origin.y + b.size.height/4, b.size.width/1.25, b.size.height /2); //view.frame;
+                //[view removeFromSuperview];
                 [self.window addSubview: videoPlayer.view];
                 [videoPlayer play];
         
@@ -91,6 +94,14 @@
                 break;
                 
             case 1:	//Play Audio
+                
+                //if video is playing
+                if (videoPlayer.playbackState == MPMoviePlaybackStatePlaying) {
+                    //notification.object is the movie player controller.
+                    [videoPlayer.view removeFromSuperview];
+                    [UIApplication sharedApplication].statusBarHidden = NO;
+                    //[self.window addSubview: view];
+                }
                 
                 if (player == nil) {
                     //Create the audio player.
@@ -125,13 +136,8 @@
                     break;
                 }
                 
-                
-                
                 break;
-                
-            case 2:	//Noting
-                
-                
+    
             default:
                 NSLog(@"UISegmentedControl selectedSegmentIndex == %ld",
                       (long)control.selectedSegmentIndex);
@@ -150,7 +156,7 @@
 	//notification.object is the movie player controller.
 	[videoPlayer.view removeFromSuperview];
 	[UIApplication sharedApplication].statusBarHidden = NO;
-	[self.window addSubview: view];
+	//[self.window addSubview: view];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

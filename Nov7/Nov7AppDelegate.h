@@ -22,6 +22,8 @@
     
     MPMoviePlayerController *videoPlayer;
     
+    UILabel *volLabel;
+    
     NSURL *videoURL;
 
 }
