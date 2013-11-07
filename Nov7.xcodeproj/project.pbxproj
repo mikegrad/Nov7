@@ -22,6 +22,7 @@
 		2711A12A182BF5A700961BFF /* View1.m in Sources */ = {isa = PBXBuildFile; fileRef = 2711A129182BF5A700961BFF /* View1.m */; };
 		2711A12C182BF5BC00961BFF /* musette.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2711A12B182BF5BC00961BFF /* musette.mp3 */; };
 		2711A12E182C025C00961BFF /* sneeze.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 2711A12D182C025C00961BFF /* sneeze.m4v */; };
+		2711A130182C345000961BFF /* 07 Here Comes The Sun.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2711A12F182C345000961BFF /* 07 Here Comes The Sun.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		2711A129182BF5A700961BFF /* View1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View1.m; sourceTree = "<group>"; };
 		2711A12B182BF5BC00961BFF /* musette.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = musette.mp3; path = ../musette.mp3; sourceTree = "<group>"; };
 		2711A12D182C025C00961BFF /* sneeze.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = sneeze.m4v; sourceTree = "<group>"; };
+		2711A12F182C345000961BFF /* 07 Here Comes The Sun.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "07 Here Comes The Sun.m4a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		2711A0ED182BF59600961BFF = {
 			isa = PBXGroup;
 			children = (
+				2711A12F182C345000961BFF /* 07 Here Comes The Sun.m4a */,
 				2711A128182BF5A700961BFF /* View1.h */,
 				2711A129182BF5A700961BFF /* View1.m */,
 				2711A0FF182BF59600961BFF /* Nov7 */,
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2711A130182C345000961BFF /* 07 Here Comes The Sun.m4a in Resources */,
 				2711A104182BF59600961BFF /* InfoPlist.strings in Resources */,
 				2711A12E182C025C00961BFF /* sneeze.m4v in Resources */,
 				2711A10C182BF59600961BFF /* Images.xcassets in Resources */,

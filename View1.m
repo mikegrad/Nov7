@@ -81,6 +81,25 @@
 
 		[self addSubview: slider];
         
+        CGSize l = CGSizeMake(100, 16);
+        
+        UIFont *font = [UIFont fontWithName: @"Courier" size: 26];
+		NSDictionary *attributes =
+        [NSDictionary dictionaryWithObject: font forKey: NSFontAttributeName];
+		l = [@"Volume Control" sizeWithAttributes: attributes];
+        
+		f = CGRectMake(
+                       200,
+                       200,
+                       100,
+                       100
+                       );
+        
+		label = [[UILabel alloc] initWithFrame: f];
+		label.textAlignment = NSTextAlignmentCenter;
+		label.font = font;
+		[self addSubview: label];
+        
 	}
 	return self;
 }
